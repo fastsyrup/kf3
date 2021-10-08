@@ -1,13 +1,15 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import * as firebase from './firebase';
+import { Container, Col, Row } from "react-bootstrap";
+import Vote from './Vote.js';
 
 const InnerContainer = styled.div`
   display: flex;
   max-width: 800px;
   width: 100%;
   flex-wrap: wrap;
+  justify-content: left;
 `;
 
 const OuterContainer = styled.div`
@@ -18,21 +20,19 @@ const OuterContainer = styled.div`
 `;
 
 function App() {
-  const [voteData, setVoteData] = useState();
-
-  useEffect(() => {
-    (async () => {
-      const dataShell = await firebase.getVotesList();
-      const data = dataShell.data();
-      console.log(data.fields);
-    })()
-  }, []);
 
   return (
     <div className="App">
       <OuterContainer>
         <InnerContainer>
-          Blä2
+          <Container fluid>
+            <Row>
+              <h1>Kalenderfee 2.0</h1>
+            </Row>
+            <Row>
+              <Vote />
+            </Row>
+          </Container>
         </InnerContainer>
       </OuterContainer>
     </div>
