@@ -1,7 +1,9 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
+//import styled from "styled-components";
 import * as firebase from './firebase';
+import { Formik, Field, Form } from 'formik';
+//import { Form, Button } from 'react-bootstrap';
 
 const Vote = (props) => {
     const [voteDataOptions, setVoteDataOptions] = useState();
@@ -17,15 +19,62 @@ const Vote = (props) => {
         })()
     }, []);
 
+    // return (
+    //     <div>
+    //         <h3>Bist du diesen Mittwoch dabei?</h3>
+    //         {voteDataFields && voteDataFields.map((item) => (<div>{item}</div>))}
+    //     </div>
+    // )
     return (
         <div>
-            <h3>Bist du diesen Mittwoch dabei?</h3>
-            {voteDataFields && voteDataFields.map((item) => (
-                <div>{item}</div>
-            ))
-            }
+            <h3>Machst du mit</h3>
+            <Formik
+                initialValues={{
+                    selected: '',
+                    Name: '',
+                    options: ''
+                }}
+                onSubmit={async (values) => {
+                    await new Promise((r) => setTimeout(r, 500));
+                    alert(JSON.stringify(values, null, 2));
+                }}
+            >
+                {({ values }) => (
+                    <Form>
+                        <div role="group" aria-labelledby="my-radio-group">
+                            {voteDataFields && voteDataFields.map((item) => (
+                                <div>
+                                    <label>
+                                        <Field type="radio" name="selected" value={item} />
+                                        {item}
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+                        Möchtest du
+                        <div role="group" aria-labelledby="my-radio-group">
+                            {voteDataOptions && voteDataOptions.map((item) => (
+                                <div>
+                                    <label>
+                                        <Field type="checkbox" name="options" value={item} />
+                                        {item}
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+
+                        <label htmlFor="name">Name</label>
+                        <Field
+                            id="Name"
+                            name="Name"
+                            type="text"
+                        />
+                        <button type="submit">Submit</button>
+                    </Form>
+                )}
+            </Formik>
         </div>
-    )
-}
+    );
+};
 
 export default Vote;

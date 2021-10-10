@@ -10,6 +10,7 @@ const InnerContainer = styled.div`
   width: 100%;
   flex-wrap: wrap;
   justify-content: left;
+  padding: 20px;
 `;
 
 const OuterContainer = styled.div`
@@ -34,7 +35,7 @@ function App() {
             </Row>
           </Container>
         </InnerContainer>
-      </OuterContainer>
+      </OuterContainer> 
     </div>
   );
 }
