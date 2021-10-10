@@ -5,6 +5,14 @@ import * as firebase from './firebase';
 import { Formik, Field, Form } from 'formik';
 //import { Form, Button } from 'react-bootstrap';
 
+/* {
+    "selected": "Nein",
+    "Name": "asdf",
+    "options": [
+      "Grillen?"
+    ]
+  } */
+
 const Vote = (props) => {
     const [voteDataOptions, setVoteDataOptions] = useState();
     const [voteDataFields, setVoteDataFields] = useState();
@@ -13,18 +21,12 @@ const Vote = (props) => {
         (async () => {
             const dataShell = await firebase.getVotesList();
             const data = dataShell.data();
-            console.log(data.fields);
+            //console.log(data.fields);
             setVoteDataFields(data.fields);
             setVoteDataOptions(data.options);
         })()
     }, []);
 
-    // return (
-    //     <div>
-    //         <h3>Bist du diesen Mittwoch dabei?</h3>
-    //         {voteDataFields && voteDataFields.map((item) => (<div>{item}</div>))}
-    //     </div>
-    // )
     return (
         <div>
             <h3>Machst du mit</h3>
@@ -35,8 +37,11 @@ const Vote = (props) => {
                     options: ''
                 }}
                 onSubmit={async (values) => {
-                    await new Promise((r) => setTimeout(r, 500));
-                    alert(JSON.stringify(values, null, 2));
+                    //await new Promise((r) => setTimeout(r, 500));
+                    await firebase.addParticipant(values)
+                    // console.log(res);
+                    // console.log(JSON.stringify(values, null, 2));
+
                 }}
             >
                 {({ values }) => (
@@ -54,7 +59,7 @@ const Vote = (props) => {
                         Möchtest du
                         <div role="group" aria-labelledby="my-radio-group">
                             {voteDataOptions && voteDataOptions.map((item) => (
-                                <div>
+                                <div >
                                     <label>
                                         <Field type="checkbox" name="options" value={item} />
                                         {item}
@@ -73,7 +78,7 @@ const Vote = (props) => {
                     </Form>
                 )}
             </Formik>
-        </div>
+        </div >
     );
 };
 
