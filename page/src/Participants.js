@@ -9,19 +9,25 @@ const Entries = ({ data }) => {
     let res = "";
     data.forEach((entry) => {
         console.log(entry);
-        res += entry.Name
+        res += "<li>" + entry
     })
     return res;
 }
 
 const Participants = (props) => {
     const [participants, setParticipants] = useState();
+    // TODO implement data streaming
     useEffect(() => {
         (async () => {
-            const data = await firebase.getParticipantsList();
-            setParticipants(data);
-            console.log("Participants");
-            console.log(data);
+            const data = await firebase.getParticipantsList2((doc) => {
+                let p = [];
+                //console.log("doc");
+                doc.docs.map((doc) => { p.push(doc.data().Name) });
+                console.log("p");
+                console.log(p);
+                setParticipants(p);
+            });
+
         })()
     }, []);
 
