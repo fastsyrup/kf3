@@ -29,7 +29,7 @@ const Vote = (props) => {
 
     return (
         <div>
-            <h3>Machst du mit</h3>
+            <h3>Machst du mit?</h3>
             <Formik
                 initialValues={{
                     selected: '',

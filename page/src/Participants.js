@@ -9,7 +9,7 @@ const Entries = ({ data }) => {
     let res = "";
     data.forEach((entry) => {
         console.log(entry);
-        res += "<li>" + entry
+        res += entry
     })
     return res;
 }
@@ -19,10 +19,10 @@ const Participants = (props) => {
     // TODO implement data streaming
     useEffect(() => {
         (async () => {
-            const data = await firebase.getParticipantsList2((doc) => {
+            await firebase.getParticipantsList2((doc) => {
                 let p = [];
                 //console.log("doc");
-                doc.docs.map((doc) => { p.push(doc.data().Name) });
+                doc.docs.map((doc) => { return p.push(doc.data().Name) });
                 console.log("p");
                 console.log(p);
                 setParticipants(p);
