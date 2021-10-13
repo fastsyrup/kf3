@@ -14,8 +14,8 @@ import { Formik, Field, Form } from 'formik';
   } */
 
 const Vote = (props) => {
-    const [voteDataOptions, setVoteDataOptions] = useState();
-    const [voteDataFields, setVoteDataFields] = useState();
+    const [voteDataOptions, setVoteDataOptions] = useState([]);
+    const [voteDataFields, setVoteDataFields] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -47,8 +47,8 @@ const Vote = (props) => {
                 {({ values }) => (
                     <Form>
                         <div role="group" aria-labelledby="my-radio-group">
-                            {voteDataFields && voteDataFields.map((item) => (
-                                <div>
+                            {voteDataFields.map((item) => (
+                                <div key={item}>
                                     <label>
                                         <Field type="radio" name="selected" value={item} />
                                         {item}
@@ -57,9 +57,9 @@ const Vote = (props) => {
                             ))}
                         </div>
                         Möchtest du
-                        <div role="group" aria-labelledby="my-radio-group">
-                            {voteDataOptions && voteDataOptions.map((item) => (
-                                <div >
+                        <div role="group" aria-labelledby="my-radio-group" >
+                            {voteDataOptions.map((item) => (
+                                <div key={item}>
                                     <label>
                                         <Field type="checkbox" name="options" value={item} />
                                         {item}
