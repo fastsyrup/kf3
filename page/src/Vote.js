@@ -1,21 +1,9 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
-//import styled from "styled-components";
-import * as firebase from './firebase';
 import { Formik, Field, Form } from 'formik';
+//import styled from "styled-components";
 //import { Form, Button } from 'react-bootstrap';
 
-/* {
-    "selected": "Nein",
-    "Name": "asdf",
-    "options": [
-      "Grillen?"
-    ]
-  } */
-
 const Vote = ({settings, addParticipant}) => {
-    // console.log('settingsfields');
-    // console.log(settings.fields);
     return (
         <div>
             <h3>Machst du mit?</h3>
