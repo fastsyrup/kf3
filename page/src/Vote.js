@@ -34,7 +34,7 @@ const Vote = ({settings, addParticipant}) => {
                         {settings.fields && settings.fields.map((item) => (
                             <div key={item}>
                                 <label>
-                                    <Field type="radio" name="selected" value={item} />
+                                    <Field type="radio" name="selected" value={item} checked={item === "Ja"}/>
                                     {item}
                                 </label>
                             </div>
