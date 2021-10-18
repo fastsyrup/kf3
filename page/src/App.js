@@ -31,14 +31,12 @@ function App() {
         (async () => {
             await firebase.subParticipationData(setParticipationData);
             await firebase.subSettingsData(setSettingsData);
-            console.log("Participation Data");
-            console.log(participationData);
         })()
     }, []);
 
     const addParticipant = (data) => {
-        // console.log("addParticipant");
-        // console.log(data);
+        console.log("Adding participation");
+        console.log(data);
         const p = participationData;
         // console.log("p before");
         // console.log(p);
@@ -51,8 +49,21 @@ function App() {
         }      
         // console.log("p after");
         // console.log(p);
+
+        // TODO add options to data object
+        if(data.options && data.options.length) {
+            console.log("Options detected");
+            data.options.forEach((option => {
+                if(!p[option]) {
+                    p[option] = [data.Name];
+                } else {
+                    p[option].push(data.Name);
+                }
+            }));
+        }
+
         firebase.setParticipants(p);
-        console.log("Participation Data");
+        console.log("Participation Data after add");
         console.log(p);
     }
 

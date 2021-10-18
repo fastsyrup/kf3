@@ -14,7 +14,9 @@ const Vote = ({settings, addParticipant}) => {
                     options: ''
                 }}
                 onSubmit={async (values) => {
-                    addParticipant(values);
+                    if(values.Name) {
+                        addParticipant(values);
+                    }
                 }}
             >
                 {({ values }) => (
