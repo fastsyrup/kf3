@@ -4,21 +4,8 @@ import React, { useState, useEffect  } from 'react';
 
 const Participants = (props) => {
     const [participants, setParticipants] = useState([]);
-    // TODO implement data streaming
     useEffect(() => {
-        ( () => {
-             firebase.getParticipantsList2((doc) => {
-                let p = [];
-                // console.log("doc");
-                // console.log(doc);
-                doc.docs.map((doc) => { return p.push(doc.data()) });
- 
-                setParticipants(p);
-                console.log("participants");
-                console.log(participants);
-            });
-
-        })()
+        console.log("Participants")
     }, []);
 
     return (

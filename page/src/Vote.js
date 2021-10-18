@@ -13,20 +13,9 @@ import { Formik, Field, Form } from 'formik';
     ]
   } */
 
-const Vote = (props) => {
-    const [voteDataOptions, setVoteDataOptions] = useState([]);
-    const [voteDataFields, setVoteDataFields] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            const dataShell = await firebase.getVotesList();
-            const data = dataShell.data();
-            //console.log(data.fields);
-            setVoteDataFields(data.fields);
-            setVoteDataOptions(data.options);
-        })()
-    }, []);
-
+const Vote = ({settings, addParticipant}) => {
+    console.log('settingsfields');
+    console.log(settings.fields);
     return (
         <div>
             <h3>Machst du mit?</h3>
@@ -37,36 +26,19 @@ const Vote = (props) => {
                     options: ''
                 }}
                 onSubmit={async (values) => {
-                    //await new Promise((r) => setTimeout(r, 500));
-                    await firebase.addParticipant(values)
-                    console.log("add");
-                    console.log(JSON.stringify(values, null, 2));
-
+                    addParticipant(values);
                 }}
             >
                 {({ values }) => (
                     <Form>
-                        <div role="group" aria-labelledby="my-radio-group">
-                            {voteDataFields.map((item) => (
-                                <div key={item}>
-                                    <label>
-                                        <Field type="radio" name="selected" value={item} />
-                                        {item}
-                                    </label>
-                                </div>
-                            ))}
-                        </div>
-                        Möchtest du
-                        <div role="group" aria-labelledby="my-radio-group" >
-                            {voteDataOptions.map((item) => (
-                                <div key={item}>
-                                    <label>
-                                        <Field type="checkbox" name="options" value={item} />
-                                        {item}
-                                    </label>
-                                </div>
-                            ))}
-                        </div>
+                        {settings.fields && settings.fields.map((item) => (
+                            <div key={item}>
+                                <label>
+                                    <Field type="radio" name="selected" value={item} />
+                                    {item}
+                                </label>
+                            </div>
+                        ))} 
 
                         <label htmlFor="name">Name</label>
                         <Field
