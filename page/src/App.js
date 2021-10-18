@@ -2,7 +2,8 @@ import './App.css';
 //import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { Container, Row } from "react-bootstrap";
-
+import React, { useState, useEffect } from 'react';
+import * as firebase from './firebase';
 import Vote from './Vote';
 import Participants from './Participants'
 
@@ -23,6 +24,33 @@ const OuterContainer = styled.div`
 `;
 
 function App() {
+    const [settingsData, setSettingsData] = useState({});
+    const [participationData, setParticipationData] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            await firebase.subParticipationData(setParticipationData);
+            await firebase.subSettingsData(setSettingsData);
+        })()
+    }, []);
+
+    const addParticipant = (data) => {
+        // console.log("addParticipant");
+        // console.log(data);
+        const p = participationData;
+        // console.log("p before");
+        // console.log(p);
+        if(!p[data.selected]) {
+            // console.log("setting emtpy p");
+            p[data.selected] = [data.Name]
+        } else {
+            // console.log("pushing non emtpy p");
+            p[data.selected].push(data.Name)
+        }      
+        // console.log("p after");
+        // console.log(p);
+        firebase.setParticipants(p);
+    }
 
     return (
         <div className="App">
@@ -33,7 +61,7 @@ function App() {
                             <h1>Kalenderfee 2.0</h1>
                         </Row>
                         <Row>
-                            <Vote />
+                            <Vote settings={settingsData} addParticipant={addParticipant} /> 
                         </Row>
                         <Row>
                             <Participants />
