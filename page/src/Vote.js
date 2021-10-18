@@ -21,7 +21,7 @@ const Vote = ({settings, addParticipant}) => {
             <h3>Machst du mit?</h3>
             <Formik
                 initialValues={{
-                    selected: '',
+                    selected: 'Ja',
                     Name: '',
                     options: ''
                 }}
@@ -34,7 +34,7 @@ const Vote = ({settings, addParticipant}) => {
                         {settings.fields && settings.fields.map((item) => (
                             <div key={item}>
                                 <label>
-                                    <Field type="radio" name="selected" value={item} checked={item === "Ja"}/>
+                                    <Field type="radio" name="selected" value={item} />
                                     {item}
                                 </label>
                             </div>
