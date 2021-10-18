@@ -27,6 +27,15 @@ const Vote = ({settings, addParticipant}) => {
                                 </label>
                             </div>
                         ))} 
+                        Optionen
+                        {settings.options && settings.options.map((item) => (
+                            <div key={item}>
+                                <label>
+                                    <Field type="checkbox" name="options" value={item} />
+                                    {item}
+                                </label>
+                            </div>
+                        ))} 
 
                         <label htmlFor="name">Name</label>
                         <Field

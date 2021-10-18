@@ -16,6 +16,14 @@ const Participants = ({participants, settings}) => {
                     ))}
                 </div>
             ))} 
+             {settings.options && settings.options.map((item) => (
+                <div>
+                    {item}
+                    {participants && participants[item] && participants[item].map((entry) => (
+                        <li>{entry}</li>
+                    ))}
+                </div>
+            ))} 
         </div>
     )
 }
