@@ -2,6 +2,7 @@ import './App.css';
 //import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { Container, Row } from "react-bootstrap";
+
 import Vote from './Vote';
 import Participants from './Participants'
 

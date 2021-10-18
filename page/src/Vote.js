@@ -39,8 +39,8 @@ const Vote = (props) => {
                 onSubmit={async (values) => {
                     //await new Promise((r) => setTimeout(r, 500));
                     await firebase.addParticipant(values)
-                    // console.log(res);
-                    // console.log(JSON.stringify(values, null, 2));
+                    console.log("add");
+                    console.log(JSON.stringify(values, null, 2));
 
                 }}
             >
