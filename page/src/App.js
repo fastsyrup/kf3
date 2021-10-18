@@ -31,6 +31,8 @@ function App() {
         (async () => {
             await firebase.subParticipationData(setParticipationData);
             await firebase.subSettingsData(setSettingsData);
+            console.log("Participation Data");
+            console.log(participationData);
         })()
     }, []);
 
@@ -50,6 +52,8 @@ function App() {
         // console.log("p after");
         // console.log(p);
         firebase.setParticipants(p);
+        console.log("Participation Data");
+        console.log(p);
     }
 
     return (
@@ -64,7 +68,7 @@ function App() {
                             <Vote settings={settingsData} addParticipant={addParticipant} /> 
                         </Row>
                         <Row>
-                            <Participants />
+                            <Participants participants={participationData} settings={settingsData}/>
                         </Row>
                     </Container>
                 </InnerContainer>

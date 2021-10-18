@@ -1,33 +1,21 @@
 import './App.css';
-import * as firebase from './firebase';
-import React, { useState, useEffect  } from 'react';
+//import React, { useState, useEffect  } from 'react';
 
-const Participants = (props) => {
-    const [participants, setParticipants] = useState([]);
-    useEffect(() => {
-        console.log("Participants")
-    }, []);
-
+const Participants = ({participants, settings}) => {
+    console.log('Participants');
+    console.log(participants);
+    console.log(settings);
     return (
         <div>
-            <h3>Teilnehmer</h3>
-            <ul>
-                {participants.map((item) => {
-                    if(item.selected === "Ja") return <li key={item.Name}>{item.Name}</li>
-                })}
-            </ul>
-            <h3>Absagen</h3>
-            <ul>
-                {participants.map((item) => {
-                    if(item.selected === "Nein") return <li key={item.Name}>{item.Name}</li>
-                })}
-            </ul>
-            <h3>Vielleicht</h3>
-            <ul>
-                {participants.map((item) => {
-                    if(item.selected === "Vielleicht") return <li key={item.Name}>{item.Name}</li>
-                })}
-            </ul>
+            <h3>Anmeldungen bisher</h3>
+            {settings.fields && settings.fields.map((item) => (
+                <div>
+                    {item}
+                    {participants && participants[item] && participants[item].map((entry) => (
+                        <li>{entry}</li>
+                    ))}
+                </div>
+            ))} 
         </div>
     )
 }

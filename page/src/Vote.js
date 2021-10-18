@@ -14,8 +14,8 @@ import { Formik, Field, Form } from 'formik';
   } */
 
 const Vote = ({settings, addParticipant}) => {
-    console.log('settingsfields');
-    console.log(settings.fields);
+    // console.log('settingsfields');
+    // console.log(settings.fields);
     return (
         <div>
             <h3>Machst du mit?</h3>
