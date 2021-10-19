@@ -25,16 +25,16 @@ const Vote = ({ settings, addParticipant }) => {
               {settings.fields &&
                 settings.fields.map((item, index) => (
                   <div key={item}>
+                    <label className="form-check-label" htmlFor={item}>
+                      {item}
+                    </label>
                     <Field
                       type="radio"
                       name="selected"
                       value={item}
                       className="form-check-input"
-                      id={index}
+                      id={item}
                     />
-                    <label className="form-check-label" htmlFor={item}>
-                      {item}
-                    </label>
                   </div>
                 ))}
             </div>
