@@ -1,7 +1,8 @@
 import './App.css';
 //import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { Container, Row } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import React, { useState, useEffect } from 'react';
 import * as firebase from './firebase';
 import Vote from './Vote';
