@@ -1,10 +1,15 @@
 import "./App.css";
 //import Row from "react-bootstrap/Row";
 
-const Participants = ({ participants, settings }) => {
+const Participants = ({ participants, settings, setParticipants }) => {
   // console.log('Rendering Participants');
   // console.log(participants);
   // console.log(settings);
+
+  const DelEntry = (item) => {
+    return <a href="">asdf</a>;
+  };
+
   return (
     <div>
       <h3>Anmeldungen</h3>
@@ -21,7 +26,7 @@ const Participants = ({ participants, settings }) => {
           </div>
         ))}
 
-      <h3>Optionszeugs</h3>
+      <h3>Optionen</h3>
 
       {settings.options &&
         settings.options.map((item, index) => (

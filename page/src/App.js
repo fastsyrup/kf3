@@ -80,7 +80,7 @@ function App() {
                             <Vote settings={settingsData} addParticipant={addParticipant} /> 
                         </Row>
                         <Row>
-                            <Participants participants={participationData} settings={settingsData}/>
+                            <Participants participants={participationData} settings={settingsData} setParticipants={firebase.setParticipants}/>
                         </Row>
                     </Container>
                 </InnerContainer>
