@@ -48,7 +48,7 @@ const Vote = ({ settings, addParticipant }) => {
                     </label>
                     <Field
                       type="checkbox"
-                      name={item}
+                      name="options"
                       value={item}
                       className="form-check-input"
                       id={item}
