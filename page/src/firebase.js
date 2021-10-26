@@ -3,11 +3,13 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyDnrEaexENyWEPRFzDZn8ppM5rb8yONYLQ",
+  authDomain: "ruemlifee-77064.firebaseapp.com",
+  projectId: "ruemlifee-77064",
+  storageBucket: "ruemlifee-77064.appspot.com",
+  messagingSenderId: "968969733368",
+  appId: "1:968969733368:web:7dac1a70146f6c93dde70d",
+  measurementId: "G-L0YRTKB30Y",
 };
 
 console.log(firebaseConfig);
