@@ -12,10 +12,12 @@ const firebaseConfig = {
   measurementId: "G-L0YRTKB30Y",
 };
 
-console.log(firebaseConfig);
+//console.log(firebaseConfig);
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
+export const auth = firebase.auth();
 
 export const setParticipants = (data) => {
   console.log("Setting Participation data to DB");

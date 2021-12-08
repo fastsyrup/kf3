@@ -30,6 +30,7 @@ function App() {
 
     useEffect(() => {
         (async () => {
+            await firebase.auth.signInAnonymously();
             await firebase.subParticipationData(setParticipationData);
             await firebase.subSettingsData(setSettingsData);
         })()
