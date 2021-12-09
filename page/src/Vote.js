@@ -6,7 +6,7 @@ import { Formik, Field, Form } from "formik";
 const Vote = ({ settings, addParticipant }) => {
   return (
     <div>
-      <h3>Bist du am Mittwoch dabei?</h3>
+      <h5>Bist du am Mittwoch dabei?</h5>
       <Formik
         initialValues={{
           selected: "Ja",
@@ -21,56 +21,58 @@ const Vote = ({ settings, addParticipant }) => {
       >
         {({ values }) => (
           <Form>
-            <div className="form-check">
-              {settings.fields &&
-                settings.fields.map((item, index) => (
-                  <div key={item}>
-                    <label className="form-check-label" htmlFor={item}>
-                      {item}
-                    </label>
-                    <Field
-                      type="radio"
-                      name="selected"
-                      value={item}
-                      className="form-check-input"
-                      id={item}
-                    />
-                  </div>
-                ))}
-            </div>
-            Optionszeugs
-            <div className="form-check">
-              {settings.options &&
-                settings.options.map((item) => (
-                  <div key={item}>
-                    <label className="form-check-label" htmlFor={item}>
-                      {item}
-                    </label>
-                    <Field
-                      type="checkbox"
-                      name="options"
-                      value={item}
-                      className="form-check-input"
-                      id={item}
-                    />
-                  </div>
-                ))}
-            </div>
-            <div className="row g-6 align-items-center">
-              <div className="col-auto">
-                <label htmlFor="Name" className="col-form-label">
-                  Name
-                </label>
+            <div className="row">
+              <div className="col-12 btns">
+                {settings.fields &&
+                  settings.fields.map((item, index) => (
+                    <div key={item}>
+                      <Field
+                        type="radio"
+                        name="selected"
+                        value={item}
+                        className="form-check-input"
+                        id={item}
+                      />
+                      <label className="form-check-label" htmlFor={item}>
+                        {item}
+                      </label>
+                    </div>
+                  ))}
               </div>
-              <div className="col-6">
+            </div>
+            <div className="row">
+              <div className="col-12">Optionale Aktivitäten</div>
+            </div>
+            <div className="row">
+              <div className="col-12 btns">
+                {settings.options &&
+                  settings.options.map((item) => (
+                    <div key={item}>
+                      <Field
+                        type="checkbox"
+                        name="options"
+                        value={item}
+                        className="form-check-input"
+                        id={item}
+                      />
+                      <label className="form-check-label" htmlFor={item}>
+                        {item}
+                      </label>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div className="row align-items-center">
+              <div className="col-4">
                 <Field
                   id="Name"
                   name="Name"
                   type="text"
                   className="form-control"
+                  placeholder="Dein Name hombre"
                 />
               </div>
-              <div className="col-auto">
+              <div className="col-4">
                 <button type="Submit" className="btn btn-primary">
                   Speichern
                 </button>
