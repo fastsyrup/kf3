@@ -3,7 +3,7 @@ import { Formik, Field, Form } from "formik";
 //import { Row, InputGroup, FormControl } from "react-bootstrap";
 //import styled from "styled-components";
 
-const Vote = ({ settings, addParticipant }) => {
+const Vote = ({ settings, addParticipant, participationData }) => {
   return (
     <div>
       <h5>Bist du am Mittwoch dabei?</h5>
@@ -15,7 +15,7 @@ const Vote = ({ settings, addParticipant }) => {
         }}
         onSubmit={async (values) => {
           if (values.Name) {
-            addParticipant(values);
+            addParticipant(values, participationData);
           }
         }}
       >

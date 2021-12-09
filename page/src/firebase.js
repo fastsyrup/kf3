@@ -46,3 +46,36 @@ export const subSettingsData = async (setData) => {
       console.log(doc.data());
     });
 };
+
+export const addParticipant = (data, participationData) => {
+  console.log("Adding participation");
+  console.log(data);
+  const p = participationData;
+  // console.log("p before");
+  // console.log(p);
+  if (!p[data.selected]) {
+    // console.log("setting emtpy p");
+    p[data.selected] = [data.Name];
+  } else {
+    // console.log("pushing non emtpy p");
+    p[data.selected].push(data.Name);
+  }
+  // console.log("p after");
+  // console.log(p);
+
+  // TODO add options to data object
+  if (data.options && data.options.length) {
+    console.log("Options detected");
+    data.options.forEach((option) => {
+      if (!p[option]) {
+        p[option] = [data.Name];
+      } else {
+        p[option].push(data.Name);
+      }
+    });
+  }
+
+  setParticipants(p);
+  console.log("Participation Data after add");
+  console.log(p);
+};
