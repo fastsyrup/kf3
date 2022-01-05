@@ -62,21 +62,31 @@ const Vote = ({ settings, addParticipant, participationData }) => {
                   ))}
               </div>
             </div>
-            <div className="row align-items-center">
-              <div className="col-4">
+            <div className="d-inline-flex justify-content-start flex-wrap">
+              <div className="">
                 <Field
                   id="Name"
                   name="Name"
                   type="text"
                   className="form-control"
                   placeholder="Dein Name hombre"
+                  style={{
+                    width: 200,
+                    "margin-right": "20px",
+                    "margin-bottom": "15px",
+                  }}
                 />
               </div>
-              <div className="col-4">
-                <button type="Submit" className="btn btn-primary">
-                  Speichern
-                </button>
-              </div>
+
+              <button
+                type="Submit"
+                className="btn btn-primary"
+                style={{
+                  height: "40px",
+                }}
+              >
+                Speichern
+              </button>
             </div>
           </Form>
         )}
