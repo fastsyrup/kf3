@@ -53,6 +53,9 @@ export const addParticipant = (data, participationData) => {
   const p = participationData;
   // console.log("p before");
   // console.log(p);
+
+  // check if participationData.Ja exists, if not create it and add name
+  // as first value to the array
   if (!p[data.selected]) {
     // console.log("setting emtpy p");
     p[data.selected] = [data.Name];
