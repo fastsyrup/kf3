@@ -123,6 +123,5 @@ try {
 } catch (e) {
   console.log("General error");
   console.log(erro);
-} finally {
   process.exit();
 }
