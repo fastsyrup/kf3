@@ -60,9 +60,9 @@ const notify_contacts = async (contacts, wa_client) => {
       console.log("Contacting contact:");
       console.log(contact);
       const message =
-        "Hi " +
+        "Hallo " +
         contact.name +
-        ", kommst du heute abend auch ins Rümli? Bitte hier an- der abmelden. https://www.kalenderfee.com. Geile siech!🙏🙏🙏";
+        ", kommst du heute abend auch ins Rümli? Bitte hier an- der abmelden. https://www.kalenderfee.com. Geile siech 🙏🙏🙏!";
       console.log("phone: " + contact.phone + ", message: " + message);
       const result = await wa_client.sendText(contact.phone, message);
       //const result = await wa_client.sendText("0041796214534@c.us", "gaga");
@@ -95,7 +95,7 @@ const main = async (wa_client) => {
   // });
   try {
     const db = await init_db();
-    //await reset_participants(db);
+    await reset_participants(db);
     const contacts = await load_contacts(db);
     await notify_contacts(contacts, wa_client);
     console.log("Exiting normally");
