@@ -2,6 +2,7 @@ import venom from "venom-bot";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import cron from "node-cron";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnrEaexENyWEPRFzDZn8ppM5rb8yONYLQ",
@@ -98,30 +99,38 @@ const main = async (wa_client) => {
     await reset_participants(db);
     const contacts = await load_contacts(db);
     await notify_contacts(contacts, wa_client);
-    console.log("Exiting normally");
+    console.log("-------------------------------------------------");
+    console.log("Done notifying");
+    console.log("-------------------------------------------------");
   } catch (e) {
-    console.log("Error - Exiting!!!");
+    console.log("-------------------------------------------------");
+    console.log("Error - Notifier aborted!!!");
+    console.log("-------------------------------------------------");
     console.log(e);
   } finally {
-    process.exit();
+    //process.exit();
   }
 };
 
 /*********************************************************************************/
-// Main entry point
-try {
-  venom
-    .create({
-      session: "session-name", //name of session
-      multidevice: false, // for version not multidevice use false.(default: true)
-    })
-    .then((wa_client) => main(wa_client))
-    .catch((erro) => {
-      console.log("Could not start venom");
-      console.log(erro);
-    });
-} catch (e) {
-  console.log("General error");
-  console.log(erro);
-  process.exit();
-}
+cron.schedule("0 8 * * TUE", () => {
+  console.log("-------------------------------------------------");
+  console.log("Starting notifier");
+  console.log("-------------------------------------------------");
+  try {
+    venom
+      .create({
+        session: "session-name", //name of session
+        multidevice: false, // for version not multidevice use false.(default: true)
+      })
+      .then((wa_client) => main(wa_client))
+      .catch((erro) => {
+        console.log("Could not start venom");
+        console.log(erro);
+      });
+  } catch (e) {
+    console.log("General error");
+    console.log(erro);
+    //process.exit();
+  }
+});
