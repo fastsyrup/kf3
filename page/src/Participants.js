@@ -1,13 +1,18 @@
 import "./App.css";
+import useCookie from "react-use-cookie";
+
 //import Row from "react-bootstrap/Row";
 
 const Participants = ({ participants, settings, setParticipants }) => {
   // console.log('Rendering Participants');
   // console.log(participants);
   // console.log(settings);
+  const [userName, setUserName] = useCookie("Name", "");
 
-  const DelEntry = (item) => {
-    return <a href="">asdf</a>;
+  const DeleteIt = ({ name }) => {
+    if (userName === name) {
+      return "Yes";
+    } else return "";
   };
 
   return (
@@ -20,7 +25,7 @@ const Participants = ({ participants, settings, setParticipants }) => {
               key={index}
               className="col-md-4 card"
               style={{
-                "max-width": "350px",
+                maxWidth: "350px",
               }}
             >
               <div className="card-body">
@@ -28,7 +33,10 @@ const Participants = ({ participants, settings, setParticipants }) => {
                 {participants &&
                   participants[item] &&
                   participants[item].map((entry, index) => (
-                    <li key={index}>{entry}</li>
+                    <li key={index}>
+                      {entry}
+                      <DeleteIt name={entry} />
+                    </li>
                   ))}
               </div>
             </div>
@@ -43,7 +51,7 @@ const Participants = ({ participants, settings, setParticipants }) => {
               key={index}
               className="col-md-4 card"
               style={{
-                "max-width": "350px",
+                maxWidth: "350px",
               }}
             >
               <div className="card-body">

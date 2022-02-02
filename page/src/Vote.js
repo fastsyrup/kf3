@@ -1,9 +1,11 @@
 import "./App.css";
 import { Formik, Field, Form } from "formik";
+import useCookie from "react-use-cookie";
 //import { Row, InputGroup, FormControl } from "react-bootstrap";
 //import styled from "styled-components";
 
 const Vote = ({ settings, addParticipant, participationData }) => {
+  const [userName, setUserName] = useCookie("Name", "");
   return (
     <div>
       <h5>Bist du am Mittwoch dabei?</h5>
@@ -13,9 +15,11 @@ const Vote = ({ settings, addParticipant, participationData }) => {
           Name: "",
           options: "",
         }}
-        onSubmit={async (values) => {
+        onSubmit={async (values, actions) => {
           if (values.Name) {
             addParticipant(values, participationData);
+            setUserName(values.Name);
+            actions.resetForm();
           }
         }}
       >
@@ -72,8 +76,8 @@ const Vote = ({ settings, addParticipant, participationData }) => {
                   placeholder="Dein Name hombre"
                   style={{
                     width: 200,
-                    "margin-right": "20px",
-                    "margin-bottom": "15px",
+                    marginRight: "20px",
+                    marginBottom: "15px",
                   }}
                 />
               </div>
