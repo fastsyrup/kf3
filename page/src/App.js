@@ -36,6 +36,9 @@ function App() {
     })();
   }, []);
 
+  const deleteParticipant = (name) => {
+    firebase.deleteParticipant(name, participationData);
+  };
   return (
     <div className="App">
       <OuterContainer>
@@ -56,6 +59,7 @@ function App() {
                 participants={participationData}
                 settings={settingsData}
                 setParticipants={firebase.setParticipants}
+                deleteParticipant={deleteParticipant}
               />
             </Row>
           </Container>

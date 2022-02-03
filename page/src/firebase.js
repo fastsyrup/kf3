@@ -82,3 +82,24 @@ export const addParticipant = (data, participationData) => {
   console.log("Participation Data after add");
   console.log(p);
 };
+
+export const deleteParticipant = (name, participationData) => {
+  console.log("Delete");
+  console.log(name);
+  console.log(participationData);
+  let clone = { ...participationData };
+  console.log("Clone");
+  console.log(clone);
+  for (var prop in clone) {
+    console.log("o." + prop + " = " + clone[prop]);
+    var filtered = clone[prop].filter((value, index, clone) => {
+      console.log(value);
+      console.log(name);
+      return String(value) !== String(name);
+    });
+    clone[prop] = filtered;
+  }
+  console.log("res");
+  console.log(clone);
+  setParticipants(clone);
+};

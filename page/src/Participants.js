@@ -3,7 +3,12 @@ import useCookie from "react-use-cookie";
 
 //import Row from "react-bootstrap/Row";
 
-const Participants = ({ participants, settings, setParticipants }) => {
+const Participants = ({
+  participants,
+  settings,
+  setParticipants,
+  deleteParticipant,
+}) => {
   // console.log('Rendering Participants');
   // console.log(participants);
   // console.log(settings);
@@ -13,16 +18,12 @@ const Participants = ({ participants, settings, setParticipants }) => {
     return " ";
   };
 
-  const deleteParticipant = (name) => {
-    console.log("hllo");
-  };
-
   const DeleteLink = ({ name }) => {
     if (userName === name) {
       return (
         <span
-          onClick={deleteParticipant}
-          style={{ "text-decoration": "underline", color: "blue" }}
+          onClick={() => deleteParticipant(name)}
+          style={{ textDecoration: "underline", color: "blue" }}
         >
           [X]
         </span>
