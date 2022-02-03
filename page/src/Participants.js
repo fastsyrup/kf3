@@ -9,9 +9,24 @@ const Participants = ({ participants, settings, setParticipants }) => {
   // console.log(settings);
   const [userName, setUserName] = useCookie("Name", "");
 
-  const DeleteIt = ({ name }) => {
+  const Space = () => {
+    return " ";
+  };
+
+  const deleteParticipant = (name) => {
+    console.log("hllo");
+  };
+
+  const DeleteLink = ({ name }) => {
     if (userName === name) {
-      return "Yes";
+      return (
+        <span
+          onClick={deleteParticipant}
+          style={{ "text-decoration": "underline", color: "blue" }}
+        >
+          [X]
+        </span>
+      );
     } else return "";
   };
 
@@ -35,7 +50,8 @@ const Participants = ({ participants, settings, setParticipants }) => {
                   participants[item].map((entry, index) => (
                     <li key={index}>
                       {entry}
-                      <DeleteIt name={entry} />
+                      <Space />
+                      <DeleteLink name={entry} />
                     </li>
                   ))}
               </div>
